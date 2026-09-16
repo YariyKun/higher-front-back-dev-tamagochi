@@ -1,0 +1,3 @@
+line-length = 79
+extend-exclude = ["tests", "venv", "env"]
+force-exclude = true
