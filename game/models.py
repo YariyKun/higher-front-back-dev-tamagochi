@@ -40,7 +40,7 @@ class Medicine:
     def __repr__(self) -> str:
         """Метод для красивого принтинга объекта"""
         return (
-            f'{self.name} стоимость: {self.price}, '
-            f'лечит на {self.heal_hp} HP, использований: '
-            f'{self.number_of_uses - self.uses}/{self.number_of_uses}'
+            f"{self.name} стоимость: {self.price}, "
+            f"лечит на {self.heal_hp} HP, использований: "
+            f"{self.number_of_uses - self.uses}/{self.number_of_uses}"
         )
