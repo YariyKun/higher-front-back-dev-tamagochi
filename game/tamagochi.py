@@ -1,4 +1,4 @@
-"""Модуль с интерфейсом и реализациями класса тамагочи"""
+"""Модуль с интерфейсом и реализациями класса тамагочи."""
 
 import random
 from abc import ABC, abstractmethod
@@ -28,25 +28,25 @@ HIGH_FATIGUE_THRESHOLD = 70  # порог сильной усталости
 
 
 class AbstractTamagochi(ABC):
-    """Интерфейс логики тамагочи"""
+    """Интерфейс логики тамагочи."""
 
     @abstractmethod
     def feed(self, food: Food) -> None:
         """
         Абстрактный метод для кормления тамагочи
 
-        :param food: объект еды для кормления
+        :param food: объект еды для кормления.
         """
         raise NotImplementedError
 
     @abstractmethod
     def play(self) -> None:
-        """Абстрактный метод для игры с тамагочи"""
+        """Абстрактный метод для игры с тамагочи."""
         raise NotImplementedError
 
     @abstractmethod
     def rest(self) -> None:
-        """Абстрактный метод для отдыха тамагочи"""
+        """Абстрактный метод для отдыха тамагочи."""
         raise NotImplementedError
 
     @abstractmethod
@@ -54,7 +54,7 @@ class AbstractTamagochi(ABC):
         """
         Абстрактный метод для лечения тамагочи
 
-        :param medicine: лекарство для лечения
+        :param medicine: лекарство для лечения.
         """
         raise NotImplementedError
 
@@ -64,7 +64,7 @@ class AbstractTamagochi(ABC):
         """
         Абстрактное свойство для доступа ко всем состояниям тамагочи
 
-        :return: словарь со всеми состояниями тамагочи
+        :return: словарь со всеми состояниями тамагочи.
         """
         raise NotImplementedError
 
@@ -73,7 +73,7 @@ class AbstractTamagochi(ABC):
         """
         Абстрактный метод для проверки жив ли тамагочи
 
-        :return: True если жив, иначе False
+        :return: True если жив, иначе False.
         """
         raise NotImplementedError
 
@@ -82,7 +82,7 @@ class AbstractTamagochi(ABC):
         """
         Абстрактный метод для проверки, не заболел ли тамагочи
 
-        :return: True если тамагочи болеет, иначе False
+        :return: True если тамагочи болеет, иначе False.
         """
         raise NotImplementedError
 
@@ -90,7 +90,7 @@ class AbstractTamagochi(ABC):
     def update(self) -> None:
         """
         Абстрактный метод для обновления состояний тамагочи.
-        Должен использоваться после каждого взаимодействия с тамагочи
+        Должен использоваться после каждого взаимодействия с тамагочи.
         """
         raise NotImplementedError
 
@@ -107,7 +107,7 @@ class SimpleTamagochi(AbstractTamagochi):
         """
         Инициализация питомца со стартовыми показателями
 
-        :param name: имя питомца
+        :param name: имя питомца.
         """
         self.name = name
         self._hp = MAX_STAT
@@ -120,13 +120,13 @@ class SimpleTamagochi(AbstractTamagochi):
         """
         Накормить питомца: снижает голод, немного тратит энергию
 
-        :param food: объект еды для кормления
+        :param food: объект еды для кормления.
         """
         self._hunger = max(0, self._hunger - food.satiety)
         self._energy = max(0, self._energy - FEED_ENERGY_COST)
 
     def play(self) -> None:
-        """Поиграть с питомцем: тратит энергию, повышает голод и усталость"""
+        """Поиграть с питомцем: тратит энергию, повышает голод и усталость."""
         self._energy = max(0, self._energy - PLAY_ENERGY_COST)
         self._fatigue = min(MAX_STAT, self._fatigue + PLAY_FATIGUE_COST)
         self._hunger = min(MAX_STAT, self._hunger + PLAY_HUNGER_COST)
@@ -134,7 +134,7 @@ class SimpleTamagochi(AbstractTamagochi):
     def rest(self) -> None:
         """
         Уложить питомца отдыхать: восстанавливает энергию
-        и снимает усталость. Во время болезни восстановление слабее
+        и снимает усталость. Во время болезни восстановление слабее.
         """
         if self._is_sick:
             recovery = SICK_REST_ENERGY_RECOVERY
@@ -148,7 +148,7 @@ class SimpleTamagochi(AbstractTamagochi):
         Вылечить питомца: восстанавливает HP и снимает болезнь.
         Увеличивает счётчик использований лекарства
 
-        :param medicine: лекарство для лечения
+        :param medicine: лекарство для лечения.
         """
         self._hp = min(MAX_STAT, self._hp + medicine.heal_hp)
         self._is_sick = False
@@ -159,7 +159,7 @@ class SimpleTamagochi(AbstractTamagochi):
         """
         Текущие показатели питомца
 
-        :return: словарь со значениями голода, усталости, HP и энергии
+        :return: словарь со значениями голода, усталости, HP и энергии.
         """
         return {
             "hunger": self._hunger,
@@ -172,7 +172,7 @@ class SimpleTamagochi(AbstractTamagochi):
         """
         Проверить, жив ли питомец
 
-        :return: True, пока здоровье больше нуля, иначе False
+        :return: True, пока здоровье больше нуля, иначе False.
         """
         return self._hp > 0
 
@@ -180,17 +180,17 @@ class SimpleTamagochi(AbstractTamagochi):
         """
         Проверить, болен ли питомец
 
-        :return: True если питомец болеет, иначе False
+        :return: True если питомец болеет, иначе False.
         """
         return self._is_sick
 
     def update(self) -> None:
         """
-        Обновить состояние за один тик времени
+        Обновить состояние за один тик времени.
 
         Голод растёт, во время болезни теряются здоровье и силы.
         При голоде 100 или усталости 100 питомец теряет здоровье.
-        С высокой усталостью повышен шанс заболеть
+        С высокой усталостью повышен шанс заболеть.
         """
         self._hunger = min(MAX_STAT, self._hunger + HUNGER_GROWTH)
 
@@ -213,7 +213,7 @@ class SimpleTamagochi(AbstractTamagochi):
         """
         Рассчитать шанс заболеть за тик в зависимости от усталости
 
-        :return: шанс заболеть от 0 до 1
+        :return: шанс заболеть от 0 до 1.
         """
         if self._fatigue >= HIGH_FATIGUE_THRESHOLD:
             return HIGH_FATIGUE_SICK_CHANCE

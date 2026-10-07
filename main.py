@@ -1,4 +1,4 @@
-"""Точка входа в игру тамагочи-кликер"""
+"""Точка входа в игру тамагочи-кликер."""
 
 import os
 import random
@@ -80,7 +80,7 @@ def choose_pet() -> tuple[str, str]:
 
     Ввод '0' означает случайный выбор питомца.
 
-    :return: кортеж (имя питомца, ASCII-арт питомца)
+    :return: кортеж (имя питомца, ASCII-арт питомца).
     """
     print("Добро пожаловать в тамагочи-кликер!")
     print("Выберите питомца (0 — случайный):")
@@ -100,7 +100,7 @@ def row(text: str = "") -> str:
     Строка рамки с текстом у левого края
 
     :param text: текст строки
-    :return: строку с боковыми границами рамки
+    :return: строку с боковыми границами рамки.
     """
     return f"║{text.ljust(MENU_WIDTH)}║"
 
@@ -110,7 +110,7 @@ def centered_row(text: str = "") -> str:
     Строка рамки с текстом по центру
 
     :param text: текст строки
-    :return: строку с боковыми границами рамки
+    :return: строку с боковыми границами рамки.
     """
     return f"║{text.center(MENU_WIDTH)}║"
 
@@ -120,7 +120,7 @@ def wrapped_rows(text: str) -> list[str]:
     Разбивает длинный текст на несколько строк рамки по ширине меню
 
     :param text: исходный текст
-    :return: список готовых строк рамки
+    :return: список готовых строк рамки.
     """
     lines = textwrap.wrap(text, MENU_WIDTH) or [""]
     return [row(line) for line in lines]
@@ -133,7 +133,7 @@ def build_menu(game: SimpleGame, pet_name: str, pet_art: str) -> str:
     :param game: объект игры
     :param pet_name: имя питомца
     :param pet_art: ASCII-арт питомца
-    :return: многострочный текст главного экрана
+    :return: многострочный текст главного экрана.
     """
     status = game.get_status()
 
@@ -160,7 +160,7 @@ def build_menu(game: SimpleGame, pet_name: str, pet_art: str) -> str:
 
 
 def main() -> None:
-    """Точка входа: выбор питомца, создание сущностей и игровой цикл"""
+    """Точка входа: выбор питомца, создание сущностей и игровой цикл."""
     pet_name, pet_art = choose_pet()
 
     all_food = [

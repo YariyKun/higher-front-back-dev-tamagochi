@@ -1,4 +1,4 @@
-"""Модуль с интерфейсом и реализацией класса игры"""
+"""Модуль с интерфейсом и реализацией класса игры."""
 
 from abc import ABC, abstractmethod
 from typing import Any
@@ -12,7 +12,7 @@ START_COINS = 100  # стартовый капитал игрока
 
 
 class AbstractGame(ABC):
-    """Интерфейс для логики игры"""
+    """Интерфейс для логики игры."""
 
     @abstractmethod
     def __init__(
@@ -28,7 +28,7 @@ class AbstractGame(ABC):
         :param tamagochi: экземпляр тамагочи
         :param clicker: экземпляр кликера
         :param all_food: все доступные варианты еды
-        :param all_medicine: все доступные варианты лекарств
+        :param all_medicine: все доступные варианты лекарств.
         """
         raise NotImplementedError
 
@@ -37,38 +37,38 @@ class AbstractGame(ABC):
         """
         Абстрактный метод для логики действия "работа
 
-        :return: количество заработанных монет
+        :return: количество заработанных монет.
         """
         raise NotImplementedError
 
     @abstractmethod
     def buy_food(self) -> None:
-        """Абстрактный метод для покупки еды"""
+        """Абстрактный метод для покупки еды."""
         raise NotImplementedError
 
     @abstractmethod
     def buy_medicine(self) -> None:
-        """Абстрактный метод для покупки лекарства"""
+        """Абстрактный метод для покупки лекарства."""
         raise NotImplementedError
 
     @abstractmethod
     def feed_tamagochi(self) -> None:
-        """Абстрактный метод для кормления тамагочи"""
+        """Абстрактный метод для кормления тамагочи."""
         raise NotImplementedError
 
     @abstractmethod
     def heal_tamagochi(self) -> None:
-        """Абстрактный метод для лечения тамагочи"""
+        """Абстрактный метод для лечения тамагочи."""
         raise NotImplementedError
 
     @abstractmethod
     def rest_tamagochi(self):
-        """Абстрактный метод для отдыха тамагочи"""
+        """Абстрактный метод для отдыха тамагочи."""
         raise NotImplementedError
 
     @abstractmethod
     def play_with_tamagochi(self):
-        """Абстрактный метод для игры с тамагочи"""
+        """Абстрактный метод для игры с тамагочи."""
         raise NotImplementedError
 
     @abstractmethod
@@ -76,7 +76,7 @@ class AbstractGame(ABC):
         """
         Абстрактный метод для получения статуса (всех характеристик) тамагочи
 
-        :return: словарь со всеми характеристиками тамагочи
+        :return: словарь со всеми характеристиками тамагочи.
         """
         raise NotImplementedError
 
@@ -86,7 +86,7 @@ class AbstractGame(ABC):
         """
         Абстрактное свойство для доступа к сумке с едой
 
-        :return: список с имеющимися (купленными) объектами еды
+        :return: список с имеющимися (купленными) объектами еды.
         """
         raise NotImplementedError
 
@@ -96,7 +96,7 @@ class AbstractGame(ABC):
         """
         Абстрактное свойство для доступа к сумке с лекарствами
 
-        :return: список с имеющимися (купленными) объектами лекарств
+        :return: список с имеющимися (купленными) объектами лекарств.
         """
         raise NotImplementedError
 
@@ -122,7 +122,7 @@ class SimpleGame(AbstractGame):
         :param tamagochi: экземпляр тамагочи
         :param clicker: экземпляр кликера
         :param all_food: все доступные варианты еды
-        :param all_medicine: все доступные варианты лекарств
+        :param all_medicine: все доступные варианты лекарств.
         """
         self._tamagochi = tamagochi
         self._clicker = clicker
@@ -137,7 +137,7 @@ class SimpleGame(AbstractGame):
         """
         Свойство для доступа к питомцу
 
-        :return: экземпляр тамагочи
+        :return: экземпляр тамагочи.
         """
         return self._tamagochi
 
@@ -146,7 +146,7 @@ class SimpleGame(AbstractGame):
         """
         Свойство для доступа к сумке с едой
 
-        :return: список купленных объектов еды
+        :return: список купленных объектов еды.
         """
         return self._food_bag
 
@@ -155,7 +155,7 @@ class SimpleGame(AbstractGame):
         """
         Свойство для доступа к сумке с лекарствами
 
-        :return: список купленных объектов лекарств
+        :return: список купленных объектов лекарств.
         """
         return self._medicine_bag
 
@@ -163,7 +163,7 @@ class SimpleGame(AbstractGame):
         """
         Отправить питомца на работу: кликер зарабатывает монеты
 
-        :return: количество заработанных монет
+        :return: количество заработанных монет.
         """
         self._clicker.click()
         income = self._clicker.income_per_click
@@ -174,7 +174,7 @@ class SimpleGame(AbstractGame):
         """
         Купить еду в магазин и положить в сумку
 
-        :raises NotEnoughMoney: если не хватает монет
+        :raises NotEnoughMoney: если не хватает монет.
         """
         food = self._choose_item(self._all_food, "Какую еду купить: ")
         if food is None:
@@ -191,7 +191,7 @@ class SimpleGame(AbstractGame):
         """
         Купить лекарство в магазин и положить в сумку
 
-        :raises NotEnoughMoney: если не хватает монет
+        :raises NotEnoughMoney: если не хватает монет.
         """
         medicine = self._choose_item(
             self._all_medicine, "Какое лекарство купить: "
@@ -211,7 +211,7 @@ class SimpleGame(AbstractGame):
         Покормить питомца едой из сумки
 
         :raises TamagochiIsGone: если питомец мёртв
-        :raises EmptyBagError: если сумка с едой пуста
+        :raises EmptyBagError: если сумка с едой пуста.
         """
         self._ensure_alive()
         if not self._food_bag:
@@ -229,7 +229,7 @@ class SimpleGame(AbstractGame):
         Пустое лекарство выбрасывается из сумки
 
         :raises TamagochiIsGone: если питомец мёртв
-        :raises EmptyBagError: если сумка с лекарствами пуста
+        :raises EmptyBagError: если сумка с лекарствами пуста.
         """
         self._ensure_alive()
         if not self._medicine_bag:
@@ -246,7 +246,7 @@ class SimpleGame(AbstractGame):
         """
         Уложить питомца отдыхать
 
-        :raises TamagochiIsGone: если питомец мёртв
+        :raises TamagochiIsGone: если питомец мёртв.
         """
         self._ensure_alive()
         self._tamagochi.rest()
@@ -256,7 +256,7 @@ class SimpleGame(AbstractGame):
         """
         Поиграть с питомцем
 
-        :raises TamagochiIsGone: если питомец мёртв
+        :raises TamagochiIsGone: если питомец мёртв.
         """
         self._ensure_alive()
         self._tamagochi.play()
@@ -266,7 +266,7 @@ class SimpleGame(AbstractGame):
         """
         Получить статус игры: показатели питомца и монеты
 
-        :return: словарь со всеми характеристиками
+        :return: словарь со всеми характеристиками.
         """
         status: dict[str, Any] = dict(self._tamagochi.status)
         status["coins"] = self._coins
@@ -276,7 +276,7 @@ class SimpleGame(AbstractGame):
         """
         Проверить, что питомец жив
 
-        :raises TamagochiIsGone: если питомец мёртв
+        :raises TamagochiIsGone: если питомец мёртв.
         """
         if not self._tamagochi.is_alive():
             raise TamagochiIsGone("Питомец погиб")
@@ -287,7 +287,7 @@ class SimpleGame(AbstractGame):
         не был общим с каталогом
 
         :param medicine: лекарство-образец из каталога
-        :return: независимую копию лекарства
+        :return: независимую копию лекарства.
         """
         return Medicine(
             name=medicine.name,
@@ -302,7 +302,7 @@ class SimpleGame(AbstractGame):
 
         :param items: список объектов для выбора
         :param prompt: приглашение ко вводу
-        :return: выбранный объект или None при отмене (ввод 0)
+        :return: выбранный объект или None при отмене (ввод 0).
         """
         for index, item in enumerate(items, start=1):
             print(f"{index}. {item}")

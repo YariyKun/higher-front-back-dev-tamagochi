@@ -48,12 +48,12 @@ class SimpleRandomClicker(AbstractClicker):
     def income_per_click(self) -> int:
         """Свойство для доступа к количеству монет за последний клик
 
-        :return: доход последнего клика, 0 если кликов ещё не было
+        :return: доход последнего клика, 0 если кликов ещё не было.
         """
         return self._income_per_click
 
     def click(self) -> None:
-        """Совершает клик: генерирует случайный доход и запоминает его"""
+        """Совершает клик: генерирует случайный доход и запоминает его."""
         self._income_per_click = random.randint(
             self._min_income,
             self._max_income,

@@ -1,18 +1,18 @@
-"""Модуль с моделями"""
+"""Модуль с моделями."""
 
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True, slots=True)
 class Food:
-    """Модель объекта еды"""
+    """Модель объекта еды."""
 
     name: str  # наименование
     satiety: int  # на сколько единиц утоляет голод
     price: int  # стоимость
 
     def __repr__(self) -> str:
-        """Метод для красивого принтинга объекта"""
+        """Метод для красивого принтинга объекта."""
         return (
             f"{self.name} стоимость: {self.price}, "
             f"утоляет голод на {self.satiety} единиц"
@@ -21,7 +21,7 @@ class Food:
 
 @dataclass
 class Medicine:
-    """Модель объекта лекарства"""
+    """Модель объекта лекарства."""
 
     name: str  # наименование
     price: int  # стоимость
@@ -33,12 +33,12 @@ class Medicine:
         """
         Проверяет, осталось ли еще лекарство
 
-        :return: True если осталось, иначе False
+        :return: True если осталось, иначе False.
         """
         return self.uses >= self.number_of_uses
 
     def __repr__(self) -> str:
-        """Метод для красивого принтинга объекта"""
+        """Метод для красивого принтинга объекта."""
         return (
             f"{self.name} стоимость: {self.price}, "
             f"лечит на {self.heal_hp} HP, использований: "
